@@ -1,0 +1,78 @@
+{
+	"name": "vsc-profile-viewer",
+	"displayName": "Profile Viewer",
+	"description": "Profile Viewer.",
+	"publisher": "saber2pr",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.56.0"
+	},
+	"categories": [
+		"Visualization"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Saber2pr/vsc-profile-viewer.git"
+	},
+	"icon": "assets/logo.png",
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "profile",
+				"extensions": [
+					".profile.json"
+				],
+				"aliases": [
+					"Profile"
+				]
+			}
+		],
+		"customEditors": [
+			{
+				"viewType": "profile-viewer.edit",
+				"displayName": "Profile Viewer (JSON)",
+				"selector": [
+					{
+						"filenamePattern": "*.profile.json"
+					}
+				],
+				"priority": "default"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./ && cd web && yarn build",
+		"watch": "tsc -watch -p ./",
+		"build": "cd web && yarn build && cd .. && vsce package",
+		"release": "standard-version",
+		"lint": "prettier --write ./src",
+		"prepare": "husky install",
+		"dev": "cd web && yarn dev",
+		"serve": "node web/server/server.js"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^11.0.1",
+		"@types/node": "^18.11.18",
+		"@types/vscode": "^1.56.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.1.0",
+		"prettier": "^2.8.3",
+		"standard-version": "^9.5.0",
+		"typescript": "^4.1.3"
+	},
+	"dependencies": {
+		"@saber2pr/vscode-webview": "^0.1.5",
+		"fs-extra": "^11.1.0"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"yarn lint",
+			"git add ."
+		]
+	}
+}
