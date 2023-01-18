@@ -36,7 +36,6 @@ export const AppEditor = () => {
   useEffect(() => {
     const handle = () => {
       const editor = apiRef.current
-      console.log('🚀 ~ file: app-editor.tsx:38 ~ handle ~ editor', editor)
       if (editor) {
         editor.getInstance().layout()
       }
