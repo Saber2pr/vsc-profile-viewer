@@ -60,7 +60,7 @@ export const Profile = ({
       </li>
       <li>
         <p>
-          <strong>求职意向：{target}</strong>
+          <strong>求职期望：{target}</strong>
         </p>
       </li>
     </ul>
@@ -69,13 +69,13 @@ export const Profile = ({
       <li>
         <p>
           <IconFont.Birth />
-          生日：{birth}
+          年龄：{birth}
         </p>
       </li>
       <li>
         <p>
           <IconFont.Location />
-          籍贯：{location}
+          住址：{location}
         </p>
       </li>
       <li>
@@ -105,7 +105,7 @@ export const Profile = ({
             <h3>
               <span className="Profile_Border">
                 <IconFont.Github />
-                作品链接
+                个人项目
               </span>
             </h3>
           </dt>
@@ -120,7 +120,7 @@ export const Profile = ({
         </dl>
       </li>
 
-      <li>
+      <li style={{marginTop: '32px'}}>
         <dl>
           <dt>
             <h3>
