@@ -24,7 +24,7 @@
 			{
 				"id": "profile",
 				"extensions": [
-					".profile.json"
+					".profile"
 				],
 				"aliases": [
 					"Profile"
@@ -37,7 +37,7 @@
 				"displayName": "Profile Viewer (JSON)",
 				"selector": [
 					{
-						"filenamePattern": "*.profile.json"
+						"filenamePattern": "*.profile"
 					}
 				],
 				"priority": "default"
