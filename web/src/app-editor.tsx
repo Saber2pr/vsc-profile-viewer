@@ -13,6 +13,7 @@ import { Editor, EditorAPI } from '@saber2pr/monaco'
 import type { Services } from '../../src/api/type'
 import { defaultData } from './api/defaults'
 import { DragSize } from './components/drag-size'
+import { isJSON } from './utils/is'
 
 export const AppEditor = () => {
   const { data, loading, setData } = useAsync(
@@ -94,11 +95,13 @@ export const AppEditor = () => {
             apiRef.current = editor
             editor.getModel('main.json').onDidChangeContent(async () => {
               const value = editor.getValue()
-              setData(value)
-              await callService<Services, 'writeFile'>('writeFile', {
-                path: APP_ARGS.file,
-                content: value,
-              })
+              if (isJSON(value)) {
+                setData(value)
+                await callService<Services, 'writeFile'>('writeFile', {
+                  path: APP_ARGS.file,
+                  content: value,
+                })
+              }
             })
           }}
         />
