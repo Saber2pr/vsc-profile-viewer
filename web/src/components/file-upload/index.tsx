@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { readFile, addUploadListener } from "./readFile"
+import React, { useEffect } from 'react'
+import { readFile, addUploadListener } from './readFile'
 
 export interface FileUploadProps
   extends React.DetailedHTMLProps<
@@ -7,22 +7,28 @@ export interface FileUploadProps
     HTMLInputElement
   > {
   onUploaded?(value: string): any
+  onFileUploaded?(value: FileList): any
+  accept?: string
 }
 
 export const FileUpload: React.FC<FileUploadProps> = ({
   onUploaded,
+  onFileUploaded,
+  accept = '.profile',
   ...props
 }) => {
   const read = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
-    readFile(event.target.files[0]).then(res => {
-      onUploaded && onUploaded(res.toString())
-    })
+    onFileUploaded && onFileUploaded(event.target.files)
+    onUploaded &&
+      readFile(event.target.files[0]).then(res => {
+        onUploaded(res.toString())
+      })
   }
 
   useEffect(() =>
     addUploadListener(({ content }) => onUploaded(String(content)))
   )
 
-  return <input accept=".profile" {...props} type="file" onChange={read} />
+  return <input accept={accept} {...props} type="file" onChange={read} />
 }

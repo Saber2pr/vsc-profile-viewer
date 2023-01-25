@@ -6,6 +6,8 @@
  */
 import { isInVscode } from '@saber2pr/vscode-webview'
 import React, { useState, useRef } from 'react'
+import { FileUpload } from '../file-upload'
+import { readFileContentAsDataUrl } from '../file-upload/readFile'
 
 const useDefault = (defaultImg: JSX.Element): [JSX.Element, VoidFunction] => {
   const [body, alter] = useState(defaultImg)
@@ -29,13 +31,28 @@ export const ImgLazy = ({
   alt,
   ...props
 }: ImgLazy) => {
+  const [src, setSrc] = useState<string>('')
+
   const [defaultImg, destory] = useDefault(
-    <i className="iconfont icon-huabanfuben" />
+    <div>
+      <i className="iconfont icon-huabanfuben" />
+      <FileUpload
+        accept=".jpg"
+        onFileUploaded={async files => {
+          const dataUrl = await readFileContentAsDataUrl(files[0])
+          destory()
+          setSrc(
+            dataUrl.replace('data:application/octet-stream', 'data:image/png')
+          )
+        }}
+      />
+    </div>
   )
   const ref = useRef<HTMLImageElement>()
 
   return (
     <>
+      <img {...props} src={src} />
       {defaultImg}
       {isInVscode ? (
         <></>

@@ -11,7 +11,14 @@ export const readFile = (file: File) =>
     reader.onload = () => resolve(reader.result)
   })
 
-type FileInfo = {
+export const readFileContentAsDataUrl = (file: FileList[0]) =>
+  new Promise<string>(resolve => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(String(reader.result))
+  })
+
+export type FileInfo = {
   name: string
   type: string
   content: string | ArrayBuffer
@@ -27,11 +34,11 @@ export const addUploadListener = (callback: (fileInfo: FileInfo) => void) => {
       callback({ name: file.name, type: file.type, content })
     )
   }
-  document.addEventListener("dragover", ondragover)
-  document.addEventListener("drop", ondrop)
+  document.addEventListener('dragover', ondragover)
+  document.addEventListener('drop', ondrop)
 
   return () => {
-    document.removeEventListener("dragover", ondragover)
-    document.removeEventListener("drop", ondrop)
+    document.removeEventListener('dragover', ondragover)
+    document.removeEventListener('drop', ondrop)
   }
 }
