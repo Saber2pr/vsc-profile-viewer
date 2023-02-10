@@ -15,4 +15,5 @@ export type Services = {
     },
     void
   >
+  getLang: Pair<any, any>
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from 'react'
 
 import {
   Profile,
@@ -6,26 +6,27 @@ import {
   TwoSide,
   Rate,
   Table,
-  Comment
-} from "../../components"
+  Comment,
+} from '../../components'
 
-import "./style.less"
-import { IconFont } from "../../iconfont"
+import './style.less'
+import { IconFont } from '../../iconfont'
 
 export interface View {
   data: {
     margin: string
     profile: Profile
-    worksexp: Delete<WorksView, "icon">
-    opensource: Delete<WorksView, "icon">
+    worksexp: Delete<WorksView, 'icon'>
+    opensource: Delete<WorksView, 'icon'>
     ability: Table
     rate: Comment
   }
+  onLangChange?(lang: any): void
 }
 
 type Delete<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
-export const View = ({ data }: View) => {
+export const View = ({ data, onLangChange }: View) => {
   const { profile, worksexp, opensource, rate, ability, margin } = data
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export const View = ({ data }: View) => {
   return (
     <main className="View">
       <TwoSide>
-        <Profile {...profile} />
+        <Profile {...profile} onLangChange={onLangChange} />
         <aside className="main">
           <WorksView {...opensource} icon={<IconFont.Npm />} />
           <WorksView {...worksexp} icon={<IconFont.Exp />} />

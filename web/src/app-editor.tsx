@@ -1,6 +1,6 @@
 import 'normalize.css'
 
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import { callService } from '@saber2pr/vscode-webview'
 
@@ -14,8 +14,11 @@ import type { Services } from '../../src/api/type'
 import { defaultData } from './api/defaults'
 import { DragSize } from './components/drag-size'
 import { isJSON } from './utils/is'
+import { i18n } from './i18n'
 
 export const AppEditor = () => {
+  const [tick, setTick] = useState(0)
+
   const { data, loading, setData } = useAsync(
     async () => {
       const res = await callService<Services, 'readFile'>('readFile', {
@@ -114,7 +117,14 @@ export const AppEditor = () => {
           onStart={onDragStart}
         />
         <div className="view-inner">
-          <View data={safeJSONParse(data)} />
+          <View
+            key={tick}
+            data={safeJSONParse(data)}
+            onLangChange={lang => {
+              i18n.setLocal(lang)
+              setTick(tick + 1)
+            }}
+          />
         </div>
       </div>
     </div>

@@ -36,16 +36,18 @@ export const ImgLazy = ({
   const [defaultImg, destory] = useDefault(
     <div>
       <i className="iconfont icon-huabanfuben" />
-      <FileUpload
-        accept=".jpg"
-        onFileUploaded={async files => {
-          const dataUrl = await readFileContentAsDataUrl(files[0])
-          destory()
-          setSrc(
-            dataUrl.replace('data:application/octet-stream', 'data:image/png')
-          )
-        }}
-      />
+      <div>
+        <FileUpload
+          accept=".jpg"
+          onFileUploaded={async files => {
+            const dataUrl = await readFileContentAsDataUrl(files[0])
+            destory()
+            setSrc(
+              dataUrl.replace('data:application/octet-stream', 'data:image/png')
+            )
+          }}
+        />
+      </div>
     </div>
   )
   const ref = useRef<HTMLImageElement>()

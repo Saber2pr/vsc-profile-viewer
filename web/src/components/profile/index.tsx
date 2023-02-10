@@ -3,6 +3,7 @@ import './style.less'
 import { ImgLazy } from '../img-lazy'
 import { IconFont } from '../../iconfont'
 import { isInVscode } from '@saber2pr/vscode-webview'
+import { i18n } from '../../i18n'
 
 export type Links = Array<{
   name: string
@@ -20,6 +21,7 @@ export interface Profile {
   mail: string
   workLinks: Links
   socialLinks: Links
+  onLangChange?(lang: any): void
 }
 
 export const Profile = ({
@@ -33,15 +35,30 @@ export const Profile = ({
   mobile,
   workLinks,
   socialLinks,
+  onLangChange,
 }: Profile) => (
   <div className="Profile">
     {isInVscode && (
-      <a
+      <div
         className="printer-link"
-        href="https://saber2pr.top/vsc-profile-viewer/"
+        style={{ display: 'flex', alignItems: 'center' }}
       >
-        去打印
-      </a>
+        <a
+          href={`https://saber2pr.top/vsc-profile-viewer/?lang=${i18n.language}`}
+        >
+          {i18n.format('gotoPrint')}
+        </a>
+        <select
+          value={i18n.language}
+          style={{ marginLeft: 8 }}
+          onChange={event => {
+            onLangChange && onLangChange(event.target.value as any)
+          }}
+        >
+          <option value="zh-cn">中文</option>
+          <option value="en">English</option>
+        </select>
+      </div>
     )}
     <ul>
       <li>
@@ -60,7 +77,9 @@ export const Profile = ({
       </li>
       <li>
         <p>
-          <strong>求职期望：{target}</strong>
+          <strong>
+            {i18n.format('qiuzhi')}：{target}
+          </strong>
         </p>
       </li>
     </ul>
@@ -69,31 +88,31 @@ export const Profile = ({
       <li>
         <p>
           <IconFont.Birth />
-          年龄：{birth}
+          {i18n.format('birth')}：{birth}
         </p>
       </li>
       <li>
         <p>
           <IconFont.Location />
-          住址：{location}
+          {i18n.format('location')}：{location}
         </p>
       </li>
       <li>
         <p>
           <IconFont.School />
-          院校：{school}
+          {i18n.format('school')}：{school}
         </p>
       </li>
       <li>
         <p>
           <IconFont.Phone />
-          电话：{mobile}
+          {i18n.format('phone')}：{mobile}
         </p>
       </li>
       <li>
         <p>
           <IconFont.Mail />
-          邮箱：{mail}
+          {i18n.format('email')}：{mail}
         </p>
       </li>
     </ul>
@@ -105,7 +124,7 @@ export const Profile = ({
             <h3>
               <span className="Profile_Border">
                 <IconFont.Github />
-                个人项目
+                {i18n.format('personProject')}
               </span>
             </h3>
           </dt>
@@ -120,13 +139,13 @@ export const Profile = ({
         </dl>
       </li>
 
-      <li style={{marginTop: '32px'}}>
+      <li style={{ marginTop: '32px' }}>
         <dl>
           <dt>
             <h3>
               <span className="Profile_Border">
                 <IconFont.Blog />
-                社交网站
+                {i18n.format('social')}
               </span>
             </h3>
           </dt>
