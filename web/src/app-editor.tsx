@@ -17,8 +17,6 @@ import { isJSON } from './utils/is'
 import { i18n } from './i18n'
 
 export const AppEditor = () => {
-  const [tick, setTick] = useState(0)
-
   const { data, loading, setData } = useAsync(
     async () => {
       const res = await callService<Services, 'readFile'>('readFile', {
@@ -117,14 +115,7 @@ export const AppEditor = () => {
           onStart={onDragStart}
         />
         <div className="view-inner">
-          <View
-            key={tick}
-            data={safeJSONParse(data)}
-            onLangChange={lang => {
-              i18n.setLocal(lang)
-              setTick(tick + 1)
-            }}
-          />
+          <View data={safeJSONParse(data)} />
         </div>
       </div>
     </div>

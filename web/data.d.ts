@@ -1,5 +1,6 @@
 interface Data {
   margin?: string
+  language?: 'zh-cn' | 'en'
 
   profile: {
     imgSrc: string

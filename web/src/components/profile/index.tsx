@@ -21,7 +21,6 @@ export interface Profile {
   mail: string
   workLinks: Links
   socialLinks: Links
-  onLangChange?(lang: any): void
 }
 
 export const Profile = ({
@@ -35,7 +34,6 @@ export const Profile = ({
   mobile,
   workLinks,
   socialLinks,
-  onLangChange,
 }: Profile) => (
   <div className="Profile">
     {isInVscode && (
@@ -48,16 +46,6 @@ export const Profile = ({
         >
           {i18n.format('gotoPrint')}
         </a>
-        <select
-          value={i18n.language}
-          style={{ marginLeft: 8 }}
-          onChange={event => {
-            onLangChange && onLangChange(event.target.value as any)
-          }}
-        >
-          <option value="zh-cn">中文</option>
-          <option value="en">English</option>
-        </select>
       </div>
     )}
     <ul>
