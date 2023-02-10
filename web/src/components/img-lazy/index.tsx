@@ -31,9 +31,9 @@ export const ImgLazy = ({
   alt,
   ...props
 }: ImgLazy) => {
-  const [src, setSrc] = useState<string>(
-    /^https?:/.test(props.src) ? props.src : ''
-  )
+  const isUseHttpImg = /^https?:/.test(props.src)
+
+  const [src, setSrc] = useState<string>('')
 
   const [defaultImg, destory] = useDefault(
     <div>
@@ -53,6 +53,10 @@ export const ImgLazy = ({
     </div>
   )
   const ref = useRef<HTMLImageElement>()
+
+  if (isUseHttpImg) {
+    return <img {...props} />
+  }
 
   return (
     <>
