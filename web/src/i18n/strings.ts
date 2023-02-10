@@ -15,7 +15,7 @@ export default {
     qiuzhi: 'Career Objective',
     birth: 'Age',
     location: 'Location',
-    school: 'Graduated school',
+    school: 'School',
     phone: 'Phone',
     email: 'Email',
     personProject: 'Project',
