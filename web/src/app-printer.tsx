@@ -9,7 +9,7 @@ export const AppPrinter = () => {
     <div>
       <FileUpload
         onUploaded={(value: string): any =>
-          change(<View data={isJSON(value) ? JSON.parse(value) : {}} />)
+          change(<View data={isJSON(value) ? JSON.parse(value) : []} />)
         }
       />
       <p style={{ color: '#465d7f' }}>
