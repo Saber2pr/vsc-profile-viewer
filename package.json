@@ -1,7 +1,7 @@
 {
 	"name": "vsc-profile-viewer",
 	"displayName": "Profile Viewer",
-	"description": "Profile Viewer.",
+	"description": "Profile Viewer",
 	"publisher": "saber2pr",
 	"version": "0.0.12",
 	"engines": {
