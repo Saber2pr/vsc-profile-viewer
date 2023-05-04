@@ -15,10 +15,12 @@ export const AppPrinter = () => {
               if(data?.profile) {
                 change(<View data={data} />)
               } else {
-                alert('文件内容不完整，请编辑器修改文件后保存重新上传！')
+                alert('文件内容不完整，请编辑器修改文件后保存重新上传！（需要修改默认内容后上传）')
+                window.location.reload()
               }
             } else {
-              alert('文件内容格式错误')
+              alert('文件内容格式错误，请编辑器修改文件后保存重新上传！（需要修改默认内容后上传）')
+              window.location.reload()
             }
           }
         }
