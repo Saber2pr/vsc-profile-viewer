@@ -9,7 +9,18 @@ export const AppPrinter = () => {
     <div>
       <FileUpload
         onUploaded={(value: string): any =>
-          change(<View data={isJSON(value) ? JSON.parse(value) : []} />)
+          {
+            if(isJSON(value)) {
+              const data = JSON.parse(value)
+              if(data?.profile) {
+                change(<View data={data} />)
+              } else {
+                alert('文件内容不完整，请编辑器修改文件后保存重新上传！')
+              }
+            } else {
+              alert('文件内容格式错误')
+            }
+          }
         }
       />
       <p style={{ color: '#465d7f' }}>
