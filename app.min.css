@@ -9,6 +9,12 @@ body {
   html {
     background-color: white;
   }
+  .editor {
+    display: none;
+  }
+  .view {
+    width: 100vw !important;
+  }
 }
 .content {
   display: flex;
