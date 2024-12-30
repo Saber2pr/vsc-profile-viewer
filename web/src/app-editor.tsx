@@ -2,7 +2,7 @@ import 'normalize.css'
 
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-import { callService } from '@saber2pr/vscode-webview'
+import { callService, isInVscode } from '@saber2pr/vscode-webview'
 
 import { useAsync } from './hooks/useAsync'
 import { View } from './pages/view'
@@ -14,11 +14,11 @@ import type { Services } from '../../src/api/type'
 import { defaultData } from './api/defaults'
 import { DragSize } from './components/drag-size'
 import { isJSON } from './utils/is'
-import { i18n } from './i18n'
 
 export const AppEditor = () => {
   const { data, loading, setData } = useAsync(
     async () => {
+      if (!isInVscode) return defaultData
       const res = await callService<Services, 'readFile'>('readFile', {
         path: APP_ARGS.file,
       })
@@ -98,10 +98,12 @@ export const AppEditor = () => {
               const value = editor.getValue()
               if (isJSON(value)) {
                 setData(value)
-                await callService<Services, 'writeFile'>('writeFile', {
-                  path: APP_ARGS.file,
-                  content: value,
-                })
+                if (isInVscode) {
+                  await callService<Services, 'writeFile'>('writeFile', {
+                    path: APP_ARGS.file,
+                    content: value,
+                  })
+                }
               }
             })
           }}

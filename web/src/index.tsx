@@ -11,8 +11,8 @@ import { AppPrinter } from './app-printer'
 
 setLogLevel('none')
 
-if (isInVscode) {
-  ReactDOM.render(<AppEditor />, document.getElementById('root'))
-} else {
-  ReactDOM.render(<AppPrinter />, document.getElementById('root'))
-}
+ReactDOM.render(<AppEditor />, document.getElementById('root'))
+// if (1) {
+// } else {
+//   ReactDOM.render(<AppPrinter />, document.getElementById('root'))
+// }

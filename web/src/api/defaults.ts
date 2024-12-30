@@ -1,6 +1,6 @@
 export const defaultData = `{
   "profile": {
-    "imgSrc": "https://bkimg.cdn.bcebos.com/pic/21a4462309f7905243d5124f0ef3d7ca7acbd5fd?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5",
+    "imgSrc": "https://saber2pr.top/MyWeb/resource/image/saber2pr-top.ico",
     "name": "妖梦",
     "target": "庭师",
     "birth": "??-??-??",
@@ -24,6 +24,50 @@ export const defaultData = `{
   "opensource": {
     "title": "武器",
     "works": [
+      {
+        "name": "使用说明",
+        "href": "#saber1",
+        "describes": [
+          {
+            "content": "左侧编辑json数据，即可实时预览效果！简历左侧边缘可拖动。",
+            "keywords": [
+              {
+                "word": "左侧编辑",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              }
+            ]
+          },
+          {
+            "content": "Chrome浏览器中CTRL+P或Command+P即可导出为PDF文件！打印选项中展开更多设置，缩放使用自定义设置为75，勾选背景图形！",
+            "keywords": [
+              {
+                "word": "CTRL+P",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              },
+              {
+                "word": "Command+P",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              },
+              {
+                "word": "更多设置",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              },
+              {
+                "word": "缩放",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              },
+              {
+                "word": "75",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              },
+              {
+                "word": "背景图形",
+                "style": "color:#3e92a9;text-decoration:underline;font-style:italic;"
+              }
+            ]
+          }
+        ]
+      },
       {
         "name": "楼观剑",
         "href": "#saber1",
